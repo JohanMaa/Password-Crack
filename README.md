@@ -117,3 +117,17 @@ Gunakan alat ini melalui terminal untuk pengujian langsung beikut sintaks dasar 
    ├── README.md                  # Dokumentasi proyek
 
 
+## Kontribusi
+Kontribusi sangat dihargai! Jika Anda memiliki ide atau menemukan bug, silakan:
+1. Fork repository ini.
+2. Buat branch baru:
+   ```bash
+   git checkout -b feature/nama_fitur
+3. Commit perubahan Anda:
+   ```bash
+   git commit -m "Menambahkan fitur baru"
+4. Push ke branch Anda:
+   ```bash
+   git push origin feature/nama_fitur
+5. Buat Pull Request.
+
