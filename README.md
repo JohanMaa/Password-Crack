@@ -104,19 +104,6 @@ Gunakan alat ini melalui terminal untuk pengujian langsung beikut sintaks dasar 
    - Pilih metode cracking (Dictionary, Brute Force, Hybrid).
    - Klik Start Cracking untuk memulai.
 
-## Struktur Proyek
-   ```csharp
-   password-cracker/
-   ├── password_cracker.py        # Program utama
-   ├── templates/
-   │   ├── index.html             # Antarmuka web
-   │   ├── result.html            # Halaman hasil
-   ├── static/
-   │   ├── style.css              # Gaya antarmuka
-   ├── requirements.txt           # Daftar dependensi
-   ├── README.md                  # Dokumentasi proyek
-
-
 ## Kontribusi
 Kontribusi sangat dihargai! Jika Anda memiliki ide atau menemukan bug, silakan:
 1. Fork repository ini.
@@ -130,4 +117,8 @@ Kontribusi sangat dihargai! Jika Anda memiliki ide atau menemukan bug, silakan:
    ```bash
    git push origin feature/nama_fitur
 5. Buat Pull Request.
+
+
+
+
 
