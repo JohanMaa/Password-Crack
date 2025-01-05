@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Cracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Password Cracker</h1>
+        <form action="/crack" method="post" enctype="multipart/form-data" id="crackForm">
+            <!-- Hash Input -->
+            <label for="hash">Hash:</label>
+            <input type="text" id="hash" name="hash" required placeholder="Enter the hash to crack">
+
+            <!-- Algorithm Selection -->
+            <label for="algorithm">Algorithm:</label>
+            <select id="algorithm" name="algorithm" required>
+                <option value="md5">MD5</option>
+                <option value="sha1">SHA1</option>
+                <option value="sha256">SHA256</option>
+                <option value="bcrypt">bcrypt</option>
+                <option value="argon2">Argon2</option>
+            </select>
+
+            <!-- Wordlist Upload -->
+            <label for="wordlist">Wordlist (optional):</label>
+            <input type="file" id="wordlist" name="wordlist">
+
+            <!-- Options -->
+            <label for="charset">Charset (for brute force):</label>
+            <input type="text" id="charset" name="charset" value="abcdefghijklmnopqrstuvwxyz" placeholder="Enter charset (default: a-z)">
+            
+            <label for="max_length">Max Length (for brute force):</label>
+            <input type="number" id="max_length" name="max_length" min="1" value="4" placeholder="Max password length">
+
+            <!-- Checkboxes for Additional Options -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="gpu_acceleration" name="gpu_acceleration">
+                <label for="gpu_acceleration">Enable GPU Acceleration</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="hybrid_attack" name="hybrid_attack">
+                <label for="hybrid_attack">Enable Hybrid Attack</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Start Cracking</button>
+        </form>
+
+        <!-- Progress Section -->
+        <div class="progress-container">
+            <h2>Progress</h2>
+            <div class="progress-bar" id="progress-bar"></div>
+            <p id="progress-text">Waiting for updates...</p>
+        </div>
+    </div>
+
+    <!-- SocketIO Script -->
+    <script>
+        const socket = io();
+
+        // Listen for progress updates
+        socket.on('update_progress', (data) => {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            
+            // Update progress bar and text
+            progressBar.style.width = `${data.length * 10}%`; // Example scaling
+            progressText.textContent = `Attempt: ${data.current_attempt}`;
+        });
+    </script>
+</body>
+</html>
+
